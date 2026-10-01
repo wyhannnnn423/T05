@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.chart-box {
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 45%;
+    text-align: center;
+}
+
+h2 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Ensure SVG elements scale within their container */
+svg {
+    width: 100%;
+    height: auto;
+}

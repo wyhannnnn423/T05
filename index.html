@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Charts Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Load D3.js library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>D3 Charts Dashboard</h1>
+        <p>TV power consumption and electricity spot prices analysis.</p>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Container for Scatter Plot -->
+        <div class="chart-box">
+            <h2>1. Scatter Plot (Energy vs Star Rating)</h2>
+            <div id="scatter-plot"></div>
+        </div>
+
+        <!-- Container for Donut Chart -->
+        <div class="chart-box">
+            <h2>2. Donut Chart (Screen Technologies)</h2>
+            <div id="donut-chart"></div>
+        </div>
+
+        <!-- Container for Bar Chart -->
+        <div class="chart-box">
+            <h2>3. Bar Chart (55-inch TV Energy by Screen Type)</h2>
+            <div id="bar-chart"></div>
+        </div>
+
+        <!-- Container for Line Chart -->
+        <div class="chart-box">
+            <h2>4. Line Chart (Spot Power Prices)</h2>
+            <div id="line-chart"></div>
+        </div>
+    </div>
+
+    <!-- Load individual chart scripts -->
+    <script src="scatter.js"></script>
+    <script src="donut.js"></script>
+    <script src="bar.js"></script>
+    <script src="line.js"></script>
+</body>
+
+</html>
