@@ -12,17 +12,14 @@ const svgBar = d3.select("#bar-chart")
 
 d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(function(data) {
 
-    // Automatically detect the first two columns
     const columns = Object.keys(data[0]);
-    const categoryCol = columns[0]; // e.g., Screen Technology
-    const valueCol = columns[1]; // e.g., Mean Energy Consumption
+    const categoryCol = columns[0];
+    const valueCol = columns[1];
 
-    // Convert string values to numbers for the y-axis
     data.forEach(d => {
         d[valueCol] = +d[valueCol];
     });
 
-    // X axis (Categorical band scale)
     const x = d3.scaleBand()
         .domain(data.map(d => d[categoryCol]))
         .range([0, widthBar])
@@ -34,7 +31,6 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(function(data) {
         .selectAll("text")
         .style("font-size", "12px");
 
-    // Y axis (Linear scale)
     const y = d3.scaleLinear()
         .domain([0, d3.max(data, d => d[valueCol])])
         .range([heightBar, 0]);
@@ -51,8 +47,22 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(function(data) {
         .attr("y", d => y(d[valueCol]))
         .attr("width", x.bandwidth())
         .attr("height", d => heightBar - y(d[valueCol]))
-        .attr("fill", "#4CAF50") // Green color
+        .attr("fill", "#4CAF50")
         .style("opacity", 0.9);
+
+    // ADDED: Direct Data Labels on top of the bars to reduce cognitive load
+    svgBar.selectAll(".data-label")
+        .data(data)
+        .enter()
+        .append("text")
+        .attr("class", "data-label")
+        .attr("x", d => x(d[categoryCol]) + x.bandwidth() / 2)
+        .attr("y", d => y(d[valueCol]) - 8) // Slightly above the bar
+        .attr("text-anchor", "middle")
+        .style("font-size", "12px")
+        .style("font-weight", "bold")
+        .style("fill", "#333")
+        .text(d => Math.round(d[valueCol])); // Show the exact number
 
     // Axis labels
     svgBar.append("text")
